@@ -1,99 +1,89 @@
-2022-08-09 11:14:56.987  INFO 7344 --- [main] r.m.c.CodetyperBackendApplication        : Starting CodetyperBackendApplication using Java 18 on DESKTOP-5UTP3S5 with PID 7344 (D:\Coding\codetyper\codetyper-backend\target\classes started by marko in D:\Coding\codetyper\codetyper-backend)
-2022-08-09 11:14:56.989  INFO 7344 --- [main] r.m.c.CodetyperBackendApplication        : No active profile set, falling back to 1 default profile: "default"
-2022-08-09 11:14:57.399  INFO 7344 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-09 11:14:57.409  INFO 7344 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 0 JPA repository interfaces.
-2022-08-09 11:14:57.793  INFO 7344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-08-09 11:14:57.800  INFO 7344 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-08-09 11:14:57.800  INFO 7344 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-09 11:14:57.875  INFO 7344 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-08-09 11:14:57.875  INFO 7344 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 849 ms
-2022-08-09 11:14:57.923 ERROR 7344 --- [main] com.zaxxer.hikari.HikariConfig           : Failed to load driver class org.mariadb.jdbc.Driver from HikariConfig class classloader jdk.internal.loader.ClassLoaders$AppClassLoader@4b1210ee
-2022-08-09 11:14:57.925  WARN 7344 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception; nested exception is java.lang.RuntimeException: Failed to load driver class org.mariadb.jdbc.Driver in either of HikariConfig class loader or Thread context classloader
-2022-08-09 11:14:57.927  INFO 7344 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2022-08-09 11:14:57.939  INFO 7344 --- [main] ConditionEvaluationReportLoggingListener : 
+2022-08-10 09:19:12.590  INFO 10896 --- [main] r.m.c.CodetyperBackendApplicationTests   : Starting CodetyperBackendApplicationTests using Java 18 on DESKTOP-5UTP3S5 with PID 10896 (started by marko in D:\Coding\codetyper\codetyper-backend)
+2022-08-10 09:19:12.595  INFO 10896 --- [main] r.m.c.CodetyperBackendApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 09:19:13.139  INFO 10896 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-10 09:19:13.150  INFO 10896 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2022-08-10 09:19:13.587  INFO 10896 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-08-10 09:19:13.670  INFO 10896 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-08-10 09:19:14.490  INFO 10896 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-10 09:19:14.699  WARN 10896 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-10 09:19:15.382  WARN 10896 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-08-09 11:14:57.954 ERROR 7344 --- [main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception; nested exception is java.lang.RuntimeException: Failed to load driver class org.mariadb.jdbc.Driver in either of HikariConfig class loader or Thread context classloader
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-5.3.22.jar:5.3.22]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908) ~[spring-context-5.3.22.jar:5.3.22]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.22.jar:5.3.22]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.2.jar:2.7.2]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-2.7.2.jar:2.7.2]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.2.jar:2.7.2]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) ~[spring-boot-2.7.2.jar:2.7.2]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.7.2.jar:2.7.2]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-2.7.2.jar:2.7.2]
-	at rs.markisha.codetyper.CodetyperBackendApplication.main(CodetyperBackendApplication.java:10) ~[classes/:na]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception; nested exception is java.lang.RuntimeException: Failed to load driver class org.mariadb.jdbc.Driver in either of HikariConfig class loader or Thread context classloader
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.22.jar:5.3.22]
-	... 21 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception; nested exception is java.lang.RuntimeException: Failed to load driver class org.mariadb.jdbc.Driver in either of HikariConfig class loader or Thread context classloader
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653) ~[spring-beans-5.3.22.jar:5.3.22]
-	... 35 common frames omitted
-Caused by: java.lang.RuntimeException: Failed to load driver class org.mariadb.jdbc.Driver in either of HikariConfig class loader or Thread context classloader
-	at com.zaxxer.hikari.HikariConfig.setDriverClassName(HikariConfig.java:491) ~[HikariCP-4.0.3.jar:na]
-	at org.springframework.boot.jdbc.DataSourceBuilder$MappedDataSourceProperty.set(DataSourceBuilder.java:459) ~[spring-boot-2.7.2.jar:2.7.2]
-	at org.springframework.boot.jdbc.DataSourceBuilder$MappedDataSourceProperties.set(DataSourceBuilder.java:355) ~[spring-boot-2.7.2.jar:2.7.2]
-	at org.springframework.boot.jdbc.DataSourceBuilder.build(DataSourceBuilder.java:181) ~[spring-boot-2.7.2.jar:2.7.2]
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration.createDataSource(DataSourceConfiguration.java:48) ~[spring-boot-autoconfigure-2.7.2.jar:2.7.2]
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Hikari.dataSource(DataSourceConfiguration.java:90) ~[spring-boot-autoconfigure-2.7.2.jar:2.7.2]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.3.22.jar:5.3.22]
-	... 36 common frames omitted
-
-2022-08-09 11:15:33.213  INFO 9116 --- [main] r.m.c.CodetyperBackendApplication        : Starting CodetyperBackendApplication using Java 18 on DESKTOP-5UTP3S5 with PID 9116 (D:\Coding\codetyper\codetyper-backend\target\classes started by marko in D:\Coding\codetyper\codetyper-backend)
-2022-08-09 11:15:33.215  INFO 9116 --- [main] r.m.c.CodetyperBackendApplication        : No active profile set, falling back to 1 default profile: "default"
-2022-08-09 11:15:33.643  INFO 9116 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-09 11:15:33.653  INFO 9116 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 0 JPA repository interfaces.
-2022-08-09 11:15:34.054  INFO 9116 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-08-09 11:15:34.061  INFO 9116 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-08-09 11:15:34.061  INFO 9116 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-09 11:15:34.139  INFO 9116 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-08-09 11:15:34.139  INFO 9116 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 885 ms
-2022-08-09 11:15:34.223  INFO 9116 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-08-09 11:15:34.289  INFO 9116 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-08-09 11:15:34.702  INFO 9116 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-09 11:15:34.739  WARN 9116 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-09 11:15:34.979  WARN 9116 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
-
-Using generated security password: 3b29c01f-e061-49e8-bb56-8d6f76bc8a2d
+Using generated security password: 876bb232-2f02-4eb0-9cd4-6128b7e81602
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2022-08-09 11:15:35.061  INFO 9116 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@9147ba2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3460e4ed, org.springframework.security.web.context.SecurityContextPersistenceFilter@669c2b07, org.springframework.security.web.header.HeaderWriterFilter@6200b644, org.springframework.security.web.csrf.CsrfFilter@15d79b70, org.springframework.security.web.authentication.logout.LogoutFilter@60844992, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3350ab4, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4e2824b1, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2efcc0b3, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@19f497aa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6a902015, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@55d99dc3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4a453f8d, org.springframework.security.web.session.SessionManagementFilter@5fb44964, org.springframework.security.web.access.ExceptionTranslationFilter@43423d40, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@160c7c42]
-2022-08-09 11:15:35.102  INFO 9116 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-08-09 11:15:35.112  INFO 9116 --- [main] r.m.c.CodetyperBackendApplication        : Started CodetyperBackendApplication in 2.173 seconds (JVM running for 2.597)
-2022-08-09 11:15:46.027  INFO 9116 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2022-08-09 11:15:46.043  INFO 9116 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-09 11:15:46.044  INFO 9116 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-08-09 11:15:46.047  INFO 9116 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-08-10 09:19:15.633  INFO 10896 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6e7f29d5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@27048db3, org.springframework.security.web.context.SecurityContextPersistenceFilter@746e534, org.springframework.security.web.header.HeaderWriterFilter@3661b732, org.springframework.security.web.csrf.CsrfFilter@59d0fac9, org.springframework.security.web.authentication.logout.LogoutFilter@126a9a77, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@535be281, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@389bc2d3, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7f94541b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@116b0b32, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2c224096, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1cfd6f63, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7bebad0d, org.springframework.security.web.session.SessionManagementFilter@491cc0eb, org.springframework.security.web.access.ExceptionTranslationFilter@2e4d2232, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59aa1d1c]
+2022-08-10 09:19:15.721  INFO 10896 --- [main] r.m.c.CodetyperBackendApplicationTests   : Started CodetyperBackendApplicationTests in 3.388 seconds (JVM running for 4.153)
+2022-08-10 09:19:15.934  INFO 10896 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-10 09:19:15.936  INFO 10896 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-08-10 09:19:15.940  INFO 10896 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-08-10 09:31:15.044  INFO 13820 --- [main] r.m.c.CodetyperBackendApplication        : Starting CodetyperBackendApplication using Java 18 on DESKTOP-5UTP3S5 with PID 13820 (D:\Coding\codetyper\codetyper-backend\target\classes started by marko in D:\Coding\codetyper\codetyper-backend)
+2022-08-10 09:31:15.046  INFO 13820 --- [main] r.m.c.CodetyperBackendApplication        : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 09:31:15.474  INFO 13820 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-10 09:31:15.484  INFO 13820 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 0 JPA repository interfaces.
+2022-08-10 09:31:15.902  INFO 13820 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-08-10 09:31:15.910  INFO 13820 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-10 09:31:15.910  INFO 13820 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-10 09:31:15.989  INFO 13820 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-10 09:31:15.989  INFO 13820 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 909 ms
+2022-08-10 09:31:16.077  INFO 13820 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-08-10 09:31:16.136  INFO 13820 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-08-10 09:31:16.174  WARN 13820 --- [main] o.s.o.j.p.DefaultPersistenceUnitManager  : Found explicit default persistence unit with name 'default' in persistence.xml - overriding local default persistence unit settings ('packagesToScan'/'mappingResources')
+2022-08-10 09:31:16.847  INFO 13820 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-10 09:31:16.887  WARN 13820 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-10 09:31:17.128  WARN 13820 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 0825faa4-67b3-40ba-aea8-f53e0821a979
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2022-08-10 09:31:17.213  INFO 13820 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3ac406d4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72646d16, org.springframework.security.web.context.SecurityContextPersistenceFilter@683ed81b, org.springframework.security.web.header.HeaderWriterFilter@6c9e74f3, org.springframework.security.web.csrf.CsrfFilter@7096d451, org.springframework.security.web.authentication.logout.LogoutFilter@b787274, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@55317c63, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5bdb6ea8, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6ec2d990, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2fccf49e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7db06c50, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1554eaa4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1cfa7ee0, org.springframework.security.web.session.SessionManagementFilter@5030997b, org.springframework.security.web.access.ExceptionTranslationFilter@1ab85862, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2d705998]
+2022-08-10 09:31:17.255  INFO 13820 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-08-10 09:31:17.264  INFO 13820 --- [main] r.m.c.CodetyperBackendApplication        : Started CodetyperBackendApplication in 2.507 seconds (JVM running for 2.933)
+2022-08-10 09:50:40.569  INFO 8648 --- [main] r.m.c.CodetyperBackendApplication        : Starting CodetyperBackendApplication using Java 18 on DESKTOP-5UTP3S5 with PID 8648 (D:\Coding\codetyper\codetyper-backend\target\classes started by marko in D:\Coding\codetyper\codetyper-backend)
+2022-08-10 09:50:40.575  INFO 8648 --- [main] r.m.c.CodetyperBackendApplication        : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 09:50:41.018  INFO 8648 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-10 09:50:41.051  INFO 8648 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 1 JPA repository interfaces.
+2022-08-10 09:50:41.464  INFO 8648 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-08-10 09:50:41.471  INFO 8648 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-10 09:50:41.471  INFO 8648 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-10 09:50:41.548  INFO 8648 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-10 09:50:41.548  INFO 8648 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 939 ms
+2022-08-10 09:50:41.635  INFO 8648 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-08-10 09:50:41.698  INFO 8648 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-08-10 09:50:41.735  WARN 8648 --- [main] o.s.o.j.p.DefaultPersistenceUnitManager  : Found explicit default persistence unit with name 'default' in persistence.xml - overriding local default persistence unit settings ('packagesToScan'/'mappingResources')
+2022-08-10 09:50:42.409  INFO 8648 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-10 09:50:42.670  WARN 8648 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-10 09:50:42.904  WARN 8648 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 89e05dc3-a773-4024-bb67-0b4899eac798
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2022-08-10 09:50:42.993  INFO 8648 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3d2b13f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58c36104, org.springframework.security.web.context.SecurityContextPersistenceFilter@3892802b, org.springframework.security.web.header.HeaderWriterFilter@1e2b37cd, org.springframework.security.web.csrf.CsrfFilter@1afa048a, org.springframework.security.web.authentication.logout.LogoutFilter@1cfb7450, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3794b7b1, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6a0ee80, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1fc8047f, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1958524b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2634d000, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1642968c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@29fc83c5, org.springframework.security.web.session.SessionManagementFilter@6033f36c, org.springframework.security.web.access.ExceptionTranslationFilter@4d90d91f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@495f7ca4]
+2022-08-10 09:50:43.023  WARN 8648 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2022-08-10 09:50:43.025  INFO 8648 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-10 09:50:43.026  INFO 8648 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-08-10 09:50:43.030  INFO 8648 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-08-10 09:50:43.031  INFO 8648 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-08-10 09:50:43.040  INFO 8648 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-08-10 09:50:43.052 ERROR 8648 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2022-08-10 09:50:57.644  INFO 13820 --- [RMI TCP Connection(23)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2022-08-10 09:50:57.660  INFO 13820 --- [RMI TCP Connection(23)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-10 09:50:57.661  INFO 13820 --- [RMI TCP Connection(23)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-08-10 09:50:57.664  INFO 13820 --- [RMI TCP Connection(23)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
