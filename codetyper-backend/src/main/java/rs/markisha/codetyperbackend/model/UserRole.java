@@ -1,4 +1,4 @@
-package rs.markisha.codetyper.model;
+package rs.markisha.codetyperbackend.model;
 
 public enum UserRole {
     ADMIN,

@@ -1,4 +1,4 @@
-package rs.markisha.codetyper.filters;
+package rs.markisha.codetyperbackend.filters;
 
 import java.io.IOException;
 
@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import rs.markisha.codetyper.services.UserDetailsServiceImpl;
-import rs.markisha.codetyper.utils.JwtUtils;
+import rs.markisha.codetyperbackend.services.UserDetailsServiceImpl;
+import rs.markisha.codetyperbackend.utils.JwtUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

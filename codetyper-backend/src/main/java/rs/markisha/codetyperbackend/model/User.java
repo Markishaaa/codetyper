@@ -1,4 +1,4 @@
-package rs.markisha.codetyper.model;
+package rs.markisha.codetyperbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

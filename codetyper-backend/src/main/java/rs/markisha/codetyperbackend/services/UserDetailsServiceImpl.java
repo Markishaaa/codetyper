@@ -1,12 +1,12 @@
-package rs.markisha.codetyper.services;
+package rs.markisha.codetyperbackend.services;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import rs.markisha.codetyper.model.User;
-import rs.markisha.codetyper.repositories.UserRepository;
+import rs.markisha.codetyperbackend.model.User;
+import rs.markisha.codetyperbackend.repositories.UserRepository;
 
 import javax.transaction.Transactional;
 

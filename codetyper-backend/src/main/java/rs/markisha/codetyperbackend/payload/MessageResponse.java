@@ -1,4 +1,4 @@
-package rs.markisha.codetyper.payload;
+package rs.markisha.codetyperbackend.payload;
 
 public class MessageResponse {
     

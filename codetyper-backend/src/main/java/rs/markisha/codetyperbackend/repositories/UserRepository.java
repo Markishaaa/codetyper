@@ -1,10 +1,10 @@
-package rs.markisha.codetyper.repositories;
+package rs.markisha.codetyperbackend.repositories;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import rs.markisha.codetyper.model.User;
+import rs.markisha.codetyperbackend.model.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
 	Optional<User> findByUsername(String username);

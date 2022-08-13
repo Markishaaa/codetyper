@@ -1,4 +1,4 @@
-package rs.markisha.codetyper.payload;
+package rs.markisha.codetyperbackend.payload;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

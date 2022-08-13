@@ -1,8 +1,8 @@
-package rs.markisha.codetyper.services;
+package rs.markisha.codetyperbackend.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import rs.markisha.codetyper.model.User;
+import rs.markisha.codetyperbackend.model.User;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

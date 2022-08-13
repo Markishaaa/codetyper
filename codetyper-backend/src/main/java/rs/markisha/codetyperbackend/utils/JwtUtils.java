@@ -1,4 +1,4 @@
-package rs.markisha.codetyper.utils;
+package rs.markisha.codetyperbackend.utils;
 
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
-import rs.markisha.codetyper.services.UserDetailsImpl;
+import rs.markisha.codetyperbackend.services.UserDetailsImpl;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package rs.markisha.codetyper.security;
+package rs.markisha.codetyperbackend.security;
 
 
 import org.springframework.context.annotation.Bean;
@@ -17,8 +17,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import rs.markisha.codetyper.filters.AuthTokenFilter;
-import rs.markisha.codetyper.services.UserDetailsServiceImpl;
+import rs.markisha.codetyperbackend.filters.AuthTokenFilter;
+import rs.markisha.codetyperbackend.services.UserDetailsServiceImpl;
 
 import java.util.List;
 
