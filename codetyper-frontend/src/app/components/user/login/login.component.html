@@ -1,0 +1,18 @@
+<div class="container">
+
+    <h2>Login</h2>
+
+    <form>
+        <input type="text" [(ngModel)]="username" name="username1" placeholder="Your username" required>
+
+        <input type="password" [(ngModel)]="password" name="password1" placeholder="Your password" required>
+
+        <br><br>
+        <button type="submit" (click)="login()">Login</button>
+    </form>
+
+    <div *ngIf="(!username || !password)" class="warning">
+        Fields cannot be empty.
+    </div>
+
+</div>

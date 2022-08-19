@@ -5,18 +5,20 @@ import java.sql.Timestamp;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import rs.markisha.codetyperbackend.model.User;
@@ -50,9 +52,16 @@ public class AuthController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<?> registerUser(@Valid @RequestParam RegisterRequest request) {
+	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest request, Errors errors) {
 		if (userRepo.existsByUsername(request.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Username is already taken."));
+		}
+		if (request.getUsername().length() < 3) {
+			return ResponseEntity.badRequest().body(new MessageResponse("Username is too short."));
+		}
+		
+		if (errors.hasErrors()) {
+			return ResponseEntity.badRequest().body(new MessageResponse("Email not valid."));
 		}
 
 		User user = new User();
@@ -92,6 +101,19 @@ public class AuthController {
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
     }
 
+    @GetMapping("/self")
+    public ResponseEntity<?> getSelf() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth instanceof AnonymousAuthenticationToken) {
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        }
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
+
+        return ResponseEntity.ok(userRepo.findByUsername(userDetails.getUsername()));
+    }
+    
 	@GetMapping("/getall")
 	public ResponseEntity<?> getall() {
 		return ResponseEntity.ok(userRepo.findAll());

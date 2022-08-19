@@ -1,0 +1,24 @@
+<div class="container">
+
+    <h2>Register</h2>
+
+    <form class="form" (ngSubmit)="register()">
+        <input type="text" [(ngModel)]="username" name="username1" placeholder="username" required><br>
+
+        <input type="text" [(ngModel)]="email" name="email1" placeholder="email" required><br>
+
+        <input type="password" [(ngModel)]="password" name="password1" placeholder="password" required><br>
+
+        <input type="password" [(ngModel)]="passwordConfirm" name="password2" placeholder="confirm password"
+            required><br>
+
+        <button type="submit">sign up</button>
+    </form>
+
+    <div *ngIf="password !== passwordConfirm" class="warning">
+        Passwords do not match.
+    </div>
+
+    <br><span>Already have an account? Login <a routerLink="/login">here</a>.</span>
+
+</div>

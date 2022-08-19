@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #31353B;
+    color: #D1D0C5;
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: 1000;
+    letter-spacing: 1px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+a {
+    color: #D1D0C5;
+    text-decoration: underline;
+}
+
+button {
+    background-color: hsl(220, 12%, 10%);
+    color: #D1D0C5;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #0c0d0f;
+}
+
+.warning {
+    color: #EED202;
+    margin: 10px;
+    margin-left: 35px;
+}

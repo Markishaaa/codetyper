@@ -1,0 +1,30 @@
+.title {
+    font-size: 35px;
+    user-select: none;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.links {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.links:hover, .title:hover {
+    color: rgb(82, 155, 173);
+}
+
+.right {
+    float: right;
+    margin-right: 10px;
+    line-height: 50px;
+}
+
+.spacer {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+hr {
+    margin-top: 10px;
+}
