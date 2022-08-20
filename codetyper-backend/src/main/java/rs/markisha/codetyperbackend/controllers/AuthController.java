@@ -56,6 +56,9 @@ public class AuthController {
 		if (userRepo.existsByUsername(request.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Username is already taken."));
 		}
+		if (userRepo.existsByEmail(request.getEmail())) {
+			return ResponseEntity.badRequest().body(new MessageResponse("Email is already registered."));
+		}
 		if (request.getUsername().length() < 3) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Username is too short."));
 		}
