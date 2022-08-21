@@ -12,6 +12,7 @@ import { HttpErrorInterceptor } from './services/http-error-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/page/navbar/navbar.component';
 import { FooterComponent } from './components/page/footer/footer.component';
+import { TypeCodeComponent } from './components/functionalities/type-code/type-code.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FooterComponent } from './components/page/footer/footer.component';
     RegisterComponent,
     LoginComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TypeCodeComponent
   ],
   imports: [
     BrowserModule,

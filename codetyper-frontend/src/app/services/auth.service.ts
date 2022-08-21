@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { User } from '../api/user';
 
 export interface AuthResult {
@@ -31,6 +31,8 @@ export class AuthService {
     return this.httpClient.post<AuthResult>(this.apiServerUrl + "/api/auth/login", {
       username: username,
       password: password
+    }, {
+      withCredentials: true
     }).pipe(map((resp: any) => {
       return resp;
     }));
