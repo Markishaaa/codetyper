@@ -1,5 +1,13 @@
 <div class="container">
-    <div *ngIf="currentSnippet">
-        <pre><code>{{currentSnippet.content}}</code></pre>
+    <div class="timer">
+        {{minute}} : {{second}}
     </div>
+
+    <div class="container box noSelect">
+        <div *ngIf="currentSnippet">
+            <pre><code>{{currentSnippet.content}}</code></pre>
+        </div>
+    </div>
+
+    <textarea (keydown)="handleKeydown($event)" class="container box text">sss</textarea>
 </div>
