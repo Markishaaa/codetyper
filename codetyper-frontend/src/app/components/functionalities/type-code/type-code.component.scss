@@ -8,6 +8,7 @@
 }
 
 .box {
+    box-sizing: border-box;
     background-color: #292d33;
     padding-left: 5rem;
     padding-right: 5rem;
@@ -16,11 +17,30 @@
 }
 
 .text {
+    box-sizing: border-box;
     resize: none;
     width: 50%;
     color: #D1D0C5;
     font-family: monospace;
     font-size: 15px;
+    font-weight: 1000;
+    letter-spacing: 1px;
+
+    padding-left: 10.6rem;
+    padding-right: 10.6rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    border-style: none; 
+    border-color: Transparent; 
+    overflow: auto;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    outline: none;
+
+    margin-top: 1rem;
 }
 
 .noSelect {
