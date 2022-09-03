@@ -7,6 +7,23 @@ create table user
     created_at    datetime    not null
 );
 
+create table score
+(
+	id 				int          not null primary key,
+	user            varchar(50)  not null,
+    code_snippet_id int          not null,
+    wpm             int          not null,
+    accuracy        int          not null,
+    
+    constraint fk_user_username
+        foreign key (user)
+            references user (username),
+
+    constraint fk_code_snippet
+        foreign key (code_snippet_id)
+            references code_snippet (id)
+);
+
 create table code_snippet
 (
     id           int         not null primary key auto_increment,
