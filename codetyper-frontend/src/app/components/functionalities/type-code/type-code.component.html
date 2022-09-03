@@ -1,41 +1,16 @@
 <div class="container">
-    <div class="timer">
-        {{minute}} : {{second}}
-    </div>
-
-    <div class="container box noSelect" #box1>
-        <div *ngIf="currentSnippet">
-            <pre><code>{{currentSnippet.content}}</code></pre>
-        </div>
-    </div>
-
-    <textarea (keydown)="handleKeydown($event)" class="container box text" #box2></textarea>
+  <div class="timer border">
+    {{minute}} : {{second}}
+  </div>
 </div>
 
-<div class="container-fluid container-diff">
-    <h1>Text Compare</h1>
-    <!-- <div *ngIf="isCompared" class="row">
-      <div class="col-md-12 editor">
-        <nu-monaco-diff-editor id="diffeditor" [options]="diffOptions" [oldModel]="originalModel" [newModel]="modifiedModel"></nu-monaco-diff-editor>
-      </div>
-    </div> -->
-    <div class="row">
-      <div class="col-md-6">
-        <div class="input-title">
-          <label>Original Text</label>
-        </div>
-        <nu-monaco-editor id="editor1" [options]="inputOptions" [(ngModel)]="currentSnippet.content"></nu-monaco-editor>
-      </div>
-      <div class="col-md-6">
-        <div class="input-title">
-          <label>Changed Text</label>
-        </div>
-        <nu-monaco-editor id="editor2" [options]="inputOptions" [(ngModel)]="text"></nu-monaco-editor>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12" style="text-align:center">
-        <button type="button" class="btn btn-primary" (click)="onCompare()">Find Difference</button>
-      </div>
-    </div>
-  </div>
+<div class="editor border">
+  <!-- <div class="flex-column"> -->
+    <!-- <nu-monaco-editor class="half" [model]="model" (keydown)="handleKeydown($event)" [height]="height"
+      [options]="options"></nu-monaco-editor>
+    <nu-monaco-editor class="half" style="float: right" [model]="modelType" (keydown)="handleKeydown($event)" [height]="height"
+      [options]="options"></nu-monaco-editor> -->
+    <nu-monaco-diff-editor (keydown)="handleKeydown($event)" [height]="height" [options]="options" [old]="oldModel" [new]="newModel">
+    </nu-monaco-diff-editor>
+  <!-- </div> -->
+</div>

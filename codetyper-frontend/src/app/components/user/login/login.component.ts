@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GlobalConstants } from 'src/app/api/global-constants';
 import { AuthService } from 'src/app/services/auth.service';
 import { SubSink } from 'subsink';
 
@@ -23,9 +24,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.login = () => {
       this.subs.add(this.authService.login(this.username, this.password).subscribe(
         resp => {
-          localStorage.setItem("token", resp.token);
-
+          GlobalConstants.isLoggedIn = true;
           this.router.navigate(["/"]);
+          // window.location.reload();
         }
       ));
     };
