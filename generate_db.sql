@@ -11,7 +11,7 @@ create table score
 (
 	id 				int          not null primary key,
 	user            varchar(50)  not null,
-    code_snippet_id int          not null,
+    snippet_id      int          not null,
     wpm             int          not null,
     accuracy        int          not null,
     
@@ -20,7 +20,7 @@ create table score
             references user (username),
 
     constraint fk_code_snippet
-        foreign key (code_snippet_id)
+        foreign key (snippet_id)
             references code_snippet (id)
 );
 
