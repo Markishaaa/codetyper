@@ -1,0 +1,18 @@
+.container {
+    position: relative;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer {
+    font-size: 25px;
+    background-color: #1E1E1E;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #0D0D0D;
+}

@@ -1,16 +1,5 @@
-<div class="container">
-  <div class="timer border">
-    {{minute}} : {{second}}
-  </div>
-</div>
-
+<app-timer [timerStarted]="timerStarted" [reset]="resetTimer"></app-timer>
 <div class="editor border">
-  <!-- <div class="flex-column"> -->
-    <!-- <nu-monaco-editor class="half" [model]="model" (keydown)="handleKeydown($event)" [height]="height"
-      [options]="options"></nu-monaco-editor>
-    <nu-monaco-editor class="half" style="float: right" [model]="modelType" (keydown)="handleKeydown($event)" [height]="height"
-      [options]="options"></nu-monaco-editor> -->
     <nu-monaco-diff-editor (keydown)="handleKeydown($event)" [height]="height" [options]="options" [old]="oldModel" [new]="newModel">
     </nu-monaco-diff-editor>
-  <!-- </div> -->
 </div>
