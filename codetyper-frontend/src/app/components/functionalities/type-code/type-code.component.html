@@ -1,4 +1,4 @@
-<app-timer [timerStarted]="timerStarted" [reset]="resetTimer" (timeEvent)="calculateWpm()"></app-timer>
+<app-timer [timerStarted]="timerStarted" [reset]="resetTimer" (timeEvent)="getTimerSeconds($event)"></app-timer>
 <div class="editor border">
     <nu-monaco-diff-editor (keydown)="handleKeydown($event)" [height]="height" [options]="options" [old]="oldModel"
         [new]="newModel">

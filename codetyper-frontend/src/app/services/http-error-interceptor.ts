@@ -5,7 +5,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     
     constructor() { }
     
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept = (request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> => {
         return next.handle(request)
             .pipe(
                 retry(1),

@@ -8,11 +8,11 @@ export class SharedService {
   
   private subject = new Subject<any>();
 
-  sendClickEvent() {
+  sendClickEvent = () => {
     this.subject.next(Injectable);
   }
 
-  getClickEvent(): Observable<any> {
+  getClickEvent = (): Observable<any> => {
     return this.subject.asObservable();
   }
 

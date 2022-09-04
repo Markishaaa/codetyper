@@ -18,7 +18,7 @@ export class AuthService {
 
   private apiServerUrl = environment.apiBaseUrl;
 
-  register(username: string, email: string, password: string): Observable<any> {
+  register = (username: string, email: string, password: string): Observable<any> => {
     return this.httpClient.post<AuthResult>(this.apiServerUrl + "/api/auth/register", {
       username: username,
       email: email,
@@ -26,7 +26,7 @@ export class AuthService {
     });
   }
 
-  login(username: string, password: string): Observable<any> {
+  login = (username: string, password: string): Observable<any> => {
     return this.httpClient.post<AuthResult>(this.apiServerUrl + "/api/auth/login", {
       username: username,
       password: password
@@ -38,7 +38,7 @@ export class AuthService {
     }));
   }
 
-  logout(): Observable<any> {
+  logout = (): Observable<any> => {
     return this.httpClient.post<AuthResult>(this.apiServerUrl + "/api/auth/logout", {
       withCredentials: true,
       observe: "response" as "response"
@@ -47,10 +47,21 @@ export class AuthService {
     }));
   }
 
-  getSelf(): Observable<User> {
+  getSelf = (): Observable<User> => {
     return this.httpClient.get<User>(this.apiServerUrl + "/api/auth/self", {
       withCredentials: true
     });
   }
 
 }
+
+export const logout = async () => {
+  const res = await fetch(`${environment.apiBaseUrl}/api/auth/logout`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      credentials: "include"
+  });
+};

@@ -1,10 +1,19 @@
 create table user
 (
     username      varchar(50) not null primary key,
-    email         varchar(50) not null primary key,
+    email         varchar(50) not null,
     role          enum('ADMIN', 'USER') not null,
     password_hash tinytext    not null,
     created_at    datetime    not null
+);
+
+create table code_snippet
+(
+    id           int         not null primary key auto_increment,
+    language     varchar(50) not null,
+    title        varchar(50) not null,
+    description  mediumtext,
+    content      mediumtext  not null
 );
 
 create table score
@@ -22,15 +31,6 @@ create table score
     constraint fk_code_snippet
         foreign key (snippet_id)
             references code_snippet (id)
-);
-
-create table code_snippet
-(
-    id           int         not null primary key auto_increment,
-    language     varchar(50) not null,
-    title        varchar(50) not null,
-    description  mediumtext,
-    content      mediumtext  not null
 );
 
 insert into code_snippet (content, language, title)

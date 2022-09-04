@@ -70,8 +70,20 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
     this.initializeMonacoEditor("");
   }
 
-  calculateWpm = () => {
+  wpm: number = 0;
+  seconds: number = 0;
+  getTimerSeconds = (seconds: number) => {
+    this.seconds = seconds;
 
+    this.calculateWpm();
+    console.log(this.wpm)
+  }
+
+  calculateWpm = () => {
+    let characters = this.oldModel.code.length;
+    let minutes = this.seconds/60;
+
+    this.wpm = (characters / 5) / minutes;
   }
 
   ngOnInit(): void {
@@ -89,17 +101,15 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
         this.timerStarted = true;
       }
 
-      // for future formatting code
+      // for future code formatting
       if (event.altKey && event.shiftKey && event.key.toLowerCase() == "f") {
         event.preventDefault();
       }
 
       if (event.ctrlKey && event.key.toLowerCase() == "s") {
         event.preventDefault();
-        if (this.oldModel.code == this.newModel.code) {
-          this.timerStarted = false;
-          this.resetTimer = false;
-        }
+        this.timerStarted = false;
+        this.resetTimer = false;
       }
 
       if (event.ctrlKey && event.key.toLowerCase() == "v" ||

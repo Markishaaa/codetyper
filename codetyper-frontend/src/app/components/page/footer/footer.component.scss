@@ -1,4 +1,22 @@
-.container {
-    position: fixed;
+.footer {
+    flex-shrink: 0;
+    margin-top: 1rem;
+    background-color: #272b30;
     bottom: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+}
+
+p, a {
+    color: gray;
+    text-decoration: none;
+}
+
+p {
+    padding-left: 20px;
+}
+
+a:hover {
+    color: rgb(82, 155, 173);
 }

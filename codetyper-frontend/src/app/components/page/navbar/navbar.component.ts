@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalConstants } from 'src/app/api/global-constants';
 import { User } from 'src/app/api/user';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService, logout } from 'src/app/services/auth.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { SubSink } from 'subsink';
 
@@ -37,10 +37,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.user = data;
     }));
 
-    this.logout = () => {
-      this.subs.add(this.authService.logout().subscribe(data => {
-        window.location.reload();
-      }));
+    this.logout = async () => {
+      // this.subs.add(this.authService.logout().subscribe(data => {
+      //   GlobalConstants.user = GlobalConstants.guest;
+      //   window.location.reload();
+      // }));
+
+      GlobalConstants.user = GlobalConstants.guest;
+      await logout();
+      window.location.reload();
     }
   }
 

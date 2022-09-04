@@ -13,13 +13,13 @@ export class CodeSnippetService {
 
   private apiServerUrl = environment.apiBaseUrl;
 
-  getSnippet(id: number): Observable<CodeSnippet> {
+  getSnippet = (id: number): Observable<CodeSnippet> => {
     return this.httpClient.get<CodeSnippet>(this.apiServerUrl + "/api/snippet/" + id, {
       params: { id: id }
     });
   }
 
-  getRandomSnippet(): Observable<CodeSnippet> {
+  getRandomSnippet = (): Observable<CodeSnippet> => {
     return this.httpClient.get<CodeSnippet>(this.apiServerUrl + "/api/snippet/randomSnippet");
   }
 
