@@ -1,7 +1,7 @@
 <a class="title spacer" routerLink="/" (click)="reload()">codetyper</a>
-<div *ngIf="user && isLoggedIn; else not">
-    <a class="links spacer right">{{user.username}}</a>
+<div class="right" *ngIf="user; else not">
     <a class="links spacer right" (click)="logout()">logout</a>
+    <a class="links spacer right">{{user.username}}</a>
 </div>
 <ng-template #not>
     <a class="links spacer right" routerLink="/register">register</a>

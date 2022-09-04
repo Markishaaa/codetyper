@@ -39,6 +39,9 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
 
   handleKeydown: any;
 
+  timerStarted: boolean = false;
+  resetTimer: boolean = false;
+
   initializeMonacoEditor = (value: string) => {
     this.oldModel = {
       code: value,
@@ -67,8 +70,9 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
     this.initializeMonacoEditor("");
   }
 
-  timerStarted: boolean = false;
-  resetTimer: boolean = false; 
+  calculateWpm = () => {
+
+  }
 
   ngOnInit(): void {
     this.getRandomSnippet();
@@ -81,13 +85,10 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
 
     this.handleKeydown = (event: any) => {
       if (!this.timerStarted && event.key) {
+        this.resetTimer = false;
         this.timerStarted = true;
       }
 
-      if (event.key == monaco.KeyCode.Alt && event.key == monaco.KeyCode.Shift && event.key == monaco.KeyCode.KeyF) {
-        console.log("here")
-      }
-      
       // for future formatting code
       if (event.altKey && event.shiftKey && event.key.toLowerCase() == "f") {
         event.preventDefault();
@@ -95,7 +96,10 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
 
       if (event.ctrlKey && event.key.toLowerCase() == "s") {
         event.preventDefault();
-        // this.stopTimer();
+        if (this.oldModel.code == this.newModel.code) {
+          this.timerStarted = false;
+          this.resetTimer = false;
+        }
       }
 
       if (event.ctrlKey && event.key.toLowerCase() == "v" ||

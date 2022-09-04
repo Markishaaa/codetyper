@@ -22,10 +22,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   user: User | any;
   logout: any;
 
-  get isLoggedIn() {
-    return GlobalConstants.isLoggedIn;
-  }
-
   constructor(private router: Router, private sharedService: SharedService, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -37,15 +33,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.sharedService.sendClickEvent();
     }
 
-    if (this.isLoggedIn) {
-      this.authService.getSelf().subscribe(data => {
-        this.user = data;
-      });
-    }
+    this.subs.add(this.authService.getSelf().subscribe(data => {
+      this.user = data;
+    }));
 
     this.logout = () => {
       this.subs.add(this.authService.logout().subscribe(data => {
-        GlobalConstants.isLoggedIn = true;
         window.location.reload();
       }));
     }

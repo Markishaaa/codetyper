@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
@@ -16,6 +16,7 @@ export class TimerComponent implements OnInit {
   second: string = "00";
 
   totalSeconds: number = 0;
+  @Output() timeEvent: EventEmitter<number> = new EventEmitter<number>();
 
   onNotify = (clicked: boolean): void => {
     if (clicked) {
@@ -27,6 +28,7 @@ export class TimerComponent implements OnInit {
 
   stopTimer = () => {
     clearInterval(this.timer);
+    this.timeEvent.emit(this.totalSeconds);
   }
 
   resetTimer = () => {
@@ -34,6 +36,7 @@ export class TimerComponent implements OnInit {
     this.hour = "00";
     this.minute = "00";
     this.second = "00";
+    this.timeEvent.emit(this.totalSeconds);
   }
 
   constructor() { }
@@ -68,7 +71,7 @@ export class TimerComponent implements OnInit {
       }
 
       this.timer = setInterval(countTimer, 1000);
-    }    
+    }
   }
 
   ngOnChanges() {
