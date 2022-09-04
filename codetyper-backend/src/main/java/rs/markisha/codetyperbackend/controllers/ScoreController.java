@@ -52,8 +52,8 @@ public class ScoreController {
 		return ResponseEntity.ok(score);
 	}
 	
-	@GetMapping("/getBySnippet")
-	public ResponseEntity<?> getBySnippet(int codeSnippetId) {
+	@GetMapping("/getBySnippet/{codeSnippetId}")
+	public ResponseEntity<?> getBySnippet(@PathVariable int codeSnippetId) {
 		return ResponseEntity.ok(scoreRepo.findAllBySnippetId(codeSnippetId));
 	}
 	

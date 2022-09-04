@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/page/navbar/navbar.component';
 import { FooterComponent } from './components/page/footer/footer.component';
 import { TypeCodeComponent } from './components/functionalities/type-code/type-code.component';
 import { NuMonacoEditorDiffComponent, NuMonacoEditorModule } from '@ng-util/monaco-editor';
+import { TimerComponent } from './components/functionalities/timer/timer.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NuMonacoEditorDiffComponent, NuMonacoEditorModule } from '@ng-util/mona
     LoginComponent,
     NavbarComponent,
     FooterComponent,
-    TypeCodeComponent
+    TypeCodeComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule,
