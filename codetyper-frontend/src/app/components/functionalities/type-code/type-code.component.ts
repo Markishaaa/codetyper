@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import { NuMonacoEditorDiffModel } from '@ng-util/monaco-editor';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { NuMonacoEditorComponent, NuMonacoEditorDiffModel, NuMonacoEditorModel } from '@ng-util/monaco-editor';
 import { Subscription } from 'rxjs';
 import { CodeSnippet } from 'src/app/api/code-snippet';
 import { CodeSnippetService } from 'src/app/services/code-snippet.service';
@@ -15,71 +16,96 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
 
   subs = new SubSink();
 
-  @Output()
-  selectedLang: string = "java";
-  @Output()
-  selectedTheme: string = "vs";
+  // @ViewChild(NuMonacoEditorComponent, { static: false })
+  // model: NuMonacoEditorModel | any;
+  // modelType: NuMonacoEditorModel | any;
 
-  isCompared: boolean = false;
   text: string = "";
-
-  @Input()
-  languages = [ "java" ];
-
-  @Input()
-  themes = [
-    {
-      value: "vs",
-      name: "Visual Studio"
-    }
-  ];
-
-  // input
-  inputOptions = { theme: "vs", language: this.selectedLang };
-  // compare, output
-  diffOptions = { theme: "vs", language: this.selectedLang, readOnly: true, renderSideBySide: true };
-  originalModel: NuMonacoEditorDiffModel = {
-    code: '',
-    language: this.selectedLang
-  };
-
-  modifiedModel: NuMonacoEditorDiffModel = {
-    code: '',
-    language: this.selectedLang
-  };
 
   currentSnippet: CodeSnippet | any;
 
-  getRandomSnippet: any;
   clickEventSubscription: Subscription | any;
 
+  currentTheme = "vs-dark";
+  options = {
+    theme: this.currentTheme, minimap: { enabled: false },
+    contextmenu: false, formatOnType: true,
+    renderControlCharacters: false, renderOverviewRuler: false,
+    scrollBeyondLastLine: false, selectionClipboard: false,
+    selectOnLineNumbers: false, quickSuggestions: false,
+    renderIndicators: false
+  };
+  oldModel: NuMonacoEditorDiffModel | any;
+  newModel: NuMonacoEditorDiffModel | any;
+  height = "30rem";
+  setTheme: any;
+
   timer: any;
-  stopTimer: any;
   toggleStartTimer: boolean = true;
   toggleStopTimer: boolean = false;
   hour: string = "00";
   minute: string = "00";
   second: string = "00";
 
+  isLoading: boolean = true;
+
   handleKeydown: any;
 
-  @ViewChild("box1") box1: ElementRef | any;
-  @ViewChild("box2") box2: ElementRef | any;
-  setHeight: any;
-
-  constructor(private snippetService: CodeSnippetService, private sharedService: SharedService, private renderer: Renderer2) { }
-
-  ngOnInit(): void {
-    this.getRandomSnippet = () => {
-      this.subs.add(this.snippetService.getRandomSnippet().subscribe(data => {
-        this.currentSnippet = data;
-        this.setHeight();
-      }));
+  initializeMonacoEditor = (value: string) => {
+    this.oldModel = {
+      code: value,
+      language: "java"
+    };
+    this.newModel = {
+      code: "",
+      language: "java"
     }
 
+    // this.model = {
+    //   value: value,
+    //   language: "java",
+    // };
+    // this.modelType = {
+    //   value: "",
+    //   language: "java",
+    // };
+  }
+
+  getRandomSnippet = () => {
+    this.subs.add(this.snippetService.getRandomSnippet().subscribe(data => {
+      this.currentSnippet = {
+        id: data.id,
+        title: data.title,
+        language: data.language,
+        description: data.description,
+        content: data.content
+      };
+      this.initializeMonacoEditor(this.currentSnippet.content);
+      // this.checkForTypingErrors();
+    }));
+  }
+
+  stopTimer = () => {
+    clearInterval(this.timer);
+  }
+
+  resetTimer = () => {
+    clearInterval(this.timer);
+    this.hour = "00";
+    this.minute = "00";
+    this.second = "00";
+  }
+
+  constructor(private snippetService: CodeSnippetService, private sharedService: SharedService, @Inject(DOCUMENT) private document: Document, private elementRef: ElementRef, private renderer: Renderer2) {
+    this.initializeMonacoEditor("");
+  }
+
+  ngOnInit(): void {
     this.getRandomSnippet();
+
     this.clickEventSubscription = this.subs.add(this.sharedService.getClickEvent().subscribe(() => {
       this.getRandomSnippet();
+      this.resetTimer();
     }));
 
     this.timer = () => {
@@ -114,60 +140,70 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
       this.timer = setInterval(countTimer, 1000);
     }
 
-    this.stopTimer = () => {
-      clearInterval(this.timer);
-    }
-
     this.handleKeydown = (event: any) => {
-      let toggle = false;
-      let start = event.target.selectionStart;
-      let end = event.target.selectionEnd;
-
-      if (event.key === "Tab") {
-        event.preventDefault();
-        event.target.value = event.target.value.substring(0, start) + "  " + event.target.value.substring(end);
-        event.target.selectionStart = event.target.selectionEnd = start + 1;
-      }
-      if (event.key === "{") {
-        toggle = true;
-      }
-      if (event.key === "Enter") {
-        console.log("enter")
-        event.target.value = event.target.value.substring(0, start) + "\t" + event.target.value.substring(end);
-        event.target.selectionStart = event.target.selectionEnd = start + 1;
-        toggle = false;
-      }
-      if (toggle && event.key === "}") {
-        console.log("toggle off")
-        toggle = false;
-      }
-
       if (event.key && this.toggleStartTimer) {
         this.toggleStartTimer = false;
         this.timer();
       }
+
+      if (event.key == monaco.KeyCode.Alt && event.key == monaco.KeyCode.Shift && event.key == monaco.KeyCode.KeyF) {
+        console.log("here")
+      }
+
+      if (event.altKey && event.shiftKey && event.key.toLowerCase() == "f") {
+        event.preventDefault();
+        // this.modelEdit.trigger(this.modelEdit.code, "editor.action.formatDocument");
+      }
+
+      if (event.ctrlKey && event.key.toLowerCase() == "s") {
+        event.preventDefault();
+        this.stopTimer();
+      }
+
+      if (event.ctrlKey && event.key.toLowerCase() == "v" ||
+        event.ctrlKey && event.key.toLowerCase() == "c" ||
+        event.ctrlKey && event.key.toLowerCase() == "z") {
+        event.preventDefault();
+      }
     }
   }
 
-  ngAfterViewInit() {
-    this.setHeight = () => {
-      let height = (<HTMLElement>this.box1.nativeElement).getBoundingClientRect().height;
-      console.log(height);
-      this.renderer.setStyle(this.box2.nativeElement, 'height', `${height}px`);
-    }
+  // @ViewChild("input") inputElement: ElementRef | any;
+  // @ViewChild("output") outputElement: ElementRef | any;
 
-    this.setHeight();
+  // checkForTypingErrors = () => {
+  //   const snippet = this.currentSnippet.content;
+  //   snippet.split("").forEach((char: string) => {
+  //     const charSpan = this.document.createElement("span");
+  //     charSpan.innerText = char;
+  //     this.renderer.appendChild(this.inputElement.nativeElement, charSpan);
+  //   });
+  // }
+
+  ngAfterViewInit() {
+    //   this.elementRef.nativeElement.querySelector("#editor2")
+    //     .addEventListener("input", () => {
+    //       const arraySnippet = this.editor1.querySelectorAll("span");
+    //       const arrayValue = this.editor2.value.split("");
+    //       arraySnippet.foreach((charSpan: { classList: { remove: (arg0: string) => void; add: (arg0: string) => void; }; innerText: any; }, index: string | number) => {
+    //         const char = arrayValue[index];
+    //         if (char == null) {
+    //           charSpan.classList.remove("correct");
+    //           charSpan.classList.remove("incorrect");
+    //         }
+    //         if (char === charSpan.innerText) {
+    //           charSpan.classList.add("correct");
+    //           charSpan.classList.remove("incorrect");
+    //         } else {
+    //           charSpan.classList.remove("correct");
+    //           charSpan.classList.add("incorrect");
+    //         }
+    //       });
+    //     });
   }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
-  }
- 
-  onCompare() {
-    this.originalModel = Object.assign({}, this.originalModel, { code: this.currentSnippet.content });
-    this.modifiedModel = Object.assign({}, this.originalModel, { code: this.text });
-    this.isCompared = true;
-    window.scrollTo(0, 0); // scroll the window to top
   }
 
 }

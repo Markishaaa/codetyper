@@ -23,8 +23,7 @@ export class AuthService {
       username: username,
       email: email,
       password: password
-    }).pipe(
-    );
+    });
   }
 
   login(username: string, password: string): Observable<any> {
@@ -32,18 +31,26 @@ export class AuthService {
       username: username,
       password: password
     }, {
-      withCredentials: true
+      withCredentials: true,
+      observe: "response" as "response"
     }).pipe(map((resp: any) => {
       return resp;
     }));
   }
 
   logout(): Observable<any> {
-    return this.httpClient.post<AuthResult>(this.apiServerUrl + "/api/auth/logout", null);
+    return this.httpClient.post<AuthResult>(this.apiServerUrl + "/api/auth/logout", {
+      withCredentials: true,
+      observe: "response" as "response"
+    }).pipe(map((resp: any) => {
+      return resp;
+    }));
   }
 
-  getSelf(): Observable<any> {
-    return this.httpClient.get<User>(this.apiServerUrl + "/api/auth/self");
+  getSelf(): Observable<User> {
+    return this.httpClient.get<User>(this.apiServerUrl + "/api/auth/self", {
+      withCredentials: true
+    });
   }
 
 }

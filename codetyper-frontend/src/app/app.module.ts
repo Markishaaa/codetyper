@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/page/navbar/navbar.component';
 import { FooterComponent } from './components/page/footer/footer.component';
 import { TypeCodeComponent } from './components/functionalities/type-code/type-code.component';
-import { NuMonacoEditorModule } from '@ng-util/monaco-editor';
+import { NuMonacoEditorDiffComponent, NuMonacoEditorModule } from '@ng-util/monaco-editor';
 
 
 @NgModule({
@@ -31,7 +31,8 @@ import { NuMonacoEditorModule } from '@ng-util/monaco-editor';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NuMonacoEditorModule.forRoot()
+    NuMonacoEditorModule.forRoot(),
+    NuMonacoEditorDiffComponent
   ],
   providers: [
     AuthService,
