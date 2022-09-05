@@ -18,7 +18,7 @@ create table code_snippet
 
 create table score
 (
-	id 				int          not null primary key,
+	id 				int          not null primary key auto_increment,
 	user            varchar(50)  not null,
     snippet_id      int          not null,
     wpm             int          not null,

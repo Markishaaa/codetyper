@@ -33,5 +33,4 @@ import { Score } from '../api/score';
             accuracy: accuracy
         })
     }
-
   }

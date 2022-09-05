@@ -1,0 +1,35 @@
+#scores {
+    border-collapse: collapse;
+    width: 49%;
+}
+
+#scores td,
+#scores th {
+    border: 1px solid #393939;
+    padding: 8px;
+}
+
+#scores tr:nth-child(even) {
+    background-color: #232323;
+}
+
+#scores tr:nth-child(odd) {
+    background-color: #252525;
+}
+
+#scores tr:hover {
+    background-color: #1C1C1C;
+}
+
+#scores th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgba(82, 155, 173, 0.63);
+    color: #D1D0C5;
+}
+
+button {
+    margin-left: 0;
+    width: 49%;
+}

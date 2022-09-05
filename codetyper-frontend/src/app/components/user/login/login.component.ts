@@ -24,16 +24,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.login = () => {
       this.authService.login(this.username, this.password).subscribe(
         resp => {
-          GlobalConstants.user = resp;
-          this.router.navigate(["/"]);
-          window.location.reload();
+          this.router.navigate(["/"])
+            .then(() => window.location.reload());
         }
       );
     };
   }
 
   ngOnDestroy(): void {
-      this.subs.unsubscribe();
+    this.subs.unsubscribe();
   }
 
 }

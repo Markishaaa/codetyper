@@ -1,0 +1,21 @@
+<button (click)="showLeaderboard()">{{toggleShow}}</button>
+
+<div class="leaderboard" [ngStyle]="{'visibility': visibility}">
+    <div *ngIf="scores.length > 0; else noScores">
+        <table id="scores">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Speed</th>
+            </tr>
+            <tr *ngFor="let score of scores; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{score.user}}</td>
+                <td>{{score.wpm}} wpm</td>
+            </tr>
+        </table>
+    </div>
+    <ng-template #noScores>
+        <p>No one on the leaderboard yet.</p>
+    </ng-template>
+</div>

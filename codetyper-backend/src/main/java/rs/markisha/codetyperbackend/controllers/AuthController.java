@@ -30,7 +30,6 @@ import rs.markisha.codetyperbackend.repositories.UserRepository;
 import rs.markisha.codetyperbackend.services.UserDetailsImpl;
 import rs.markisha.codetyperbackend.utils.JwtUtils;
 
-
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -55,15 +54,11 @@ public class AuthController {
 	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest request, Errors errors) {
 		if (userRepo.existsByUsername(request.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Username is already taken."));
-		}
-		if (userRepo.existsByEmail(request.getEmail())) {
+		} else if (userRepo.existsByEmail(request.getEmail())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Email is already registered."));
-		}
-		if (request.getUsername().length() < 3) {
+		} else if (request.getUsername().length() < 3) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Username is too short."));
-		}
-		
-		if (errors.hasErrors()) {
+		} else if (errors.hasErrors()) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Email not valid."));
 		}
 
@@ -80,43 +75,42 @@ public class AuthController {
 
 		return ResponseEntity.ok().build();
 	}
-	
+
 	@PostMapping("/login")
-    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest request) {
-        if (!userRepo.existsByUsername(request.getUsername())) {
-            return ResponseEntity.notFound().build();
-        }
+	public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest request) {
+		if (!userRepo.existsByUsername(request.getUsername())) {
+			return ResponseEntity.notFound().build();
+		}
 
-        Authentication auth = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-        );
+		Authentication auth = authManager
+				.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 
-        SecurityContextHolder.getContext().setAuthentication(auth);
-        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
-        ResponseCookie cookie = jwtUtils.generateJwtCookies(userDetails);
+		SecurityContextHolder.getContext().setAuthentication(auth);
+		UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
+		ResponseCookie cookie = jwtUtils.generateJwtCookies(userDetails);
 
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
-    }
+		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
+	}
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logoutUser() {
-        ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
-    }
+	@PostMapping("/logout")
+	public ResponseEntity<?> logoutUser() {
+		ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
+	}
 
-    @GetMapping("/self")
-    public ResponseEntity<?> getSelf() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	@GetMapping("/self")
+	public ResponseEntity<?> getSelf() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        if (auth instanceof AnonymousAuthenticationToken) {
-            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-        }
+		if (auth instanceof AnonymousAuthenticationToken) {
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		}
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
+		UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
 
-        return ResponseEntity.ok(userRepo.findByUsername(userDetails.getUsername()));
-    }
-    
+		return ResponseEntity.ok(userRepo.findByUsername(userDetails.getUsername()));
+	}
+
 	@GetMapping("/getall")
 	public ResponseEntity<?> getall() {
 		return ResponseEntity.ok(userRepo.findAll());

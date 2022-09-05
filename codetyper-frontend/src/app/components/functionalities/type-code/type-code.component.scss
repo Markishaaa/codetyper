@@ -55,11 +55,11 @@
 
     .flex-column {
         display: flex;
-        flex-wrap:wrap;
+        flex-wrap: wrap;
     }
 
     .flex-column .column-item {
-        flex-basis:100%;
+        flex-basis: 100%;
     }
 }
 
@@ -73,4 +73,30 @@
 
 .incorrect {
     background-color: red;
+}
+
+select {
+    margin: 0;
+    width: 49%;
+    height: 39px;
+    border-color: black;
+    border-width: 2px;
+}
+
+.wrapper {
+    width: 100%;
+    position: relative;
+
+    #first {
+        float: left;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    #second {
+        float: right;
+        position: absolute;
+        left: 50%;
+        transform: translate(0, 10px);
+    }
 }

@@ -14,13 +14,15 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     if (error && error.error && error.error.message) {
                         // client-side error
                         errorMessage = error.error.message;
-                    } else if (error && error.message) {
-                        // server-side error
-                        errorMessage = error.message;
+                        
                     } else {
-                        errorMessage = JSON.stringify(error);
+                        errorMessage = JSON.stringify(error.message);
+                        if (errorMessage === "\"Http failure response for http://localhost:8080/api/auth/login: 404 OK\"")
+                            errorMessage = "Bad credentials" 
                     }
-                    window.alert(errorMessage);
+
+                    if (errorMessage !== "\"Http failure response for http://localhost:8080/api/auth/self: 401 OK\"")
+                        window.alert(errorMessage);
                     return throwError(errorMessage);
                 })
             );

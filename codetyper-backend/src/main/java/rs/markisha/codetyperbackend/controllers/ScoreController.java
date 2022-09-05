@@ -31,40 +31,50 @@ public class ScoreController {
 		this.scoreRepo = scoreRepo;
 		this.snippetRepo = snippetRepo;
 	}
-	
+
+//    @PreAuthorize(RoleConstants.USER)
 	@PostMapping("/createScore")
-    @PreAuthorize(RoleConstants.USER)
-    public ResponseEntity<?> createScore(@Valid @RequestBody ScoreCreateInfo createInfo) {
-		if (!scoreRepo.existsById(createInfo.getCodeSnippetId())) {
-            return ResponseEntity.badRequest().build();
-        }
-		
-		CodeSnippet snippet = snippetRepo.getById(createInfo.getCodeSnippetId());
-		
+	public ResponseEntity<?> createScore(@Valid @RequestBody ScoreCreateInfo createInfo) {
+		if (!snippetRepo.existsById(createInfo.getCodeSnippetId())) {
+			return ResponseEntity.badRequest().build();
+		}
+
 		Score score = new Score();
-		score.setSnippet(snippet);
-		score.setUser(createInfo.getUser());
-		score.setAccuracy(createInfo.getAccuracy());
-		score.setWpm(createInfo.getWpm());
-		
+		if (!scoreRepo.existsBySnippetIdAndUser(createInfo.getCodeSnippetId(), createInfo.getUser())) {
+			CodeSnippet snippet = snippetRepo.getById(createInfo.getCodeSnippetId());
+
+			score.setSnippet(snippet);
+			score.setUser(createInfo.getUser());
+			score.setAccuracy(createInfo.getAccuracy());
+			score.setWpm(createInfo.getWpm());
+		} else {
+			score = scoreRepo.findBySnippetIdAndUser(createInfo.getCodeSnippetId(), createInfo.getUser());
+			
+			if (score.getWpm() < createInfo.getWpm()) {
+				score.setWpm(createInfo.getWpm());
+			} else {
+				return ResponseEntity.ok(score);
+			}
+		}
+
 		scoreRepo.save(score);
-		
+
 		return ResponseEntity.ok(score);
 	}
-	
+
 	@GetMapping("/getBySnippet/{codeSnippetId}")
 	public ResponseEntity<?> getBySnippet(@PathVariable int codeSnippetId) {
 		return ResponseEntity.ok(scoreRepo.findAllBySnippetId(codeSnippetId));
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getScore(@PathVariable int id) {
 		Optional<Score> score = scoreRepo.findById(id);
-		
+
 		if (score.isEmpty())
 			return ResponseEntity.notFound().build();
-		
+
 		return ResponseEntity.ok(score.get());
 	}
-	
+
 }

@@ -1,6 +1,14 @@
 <app-timer [timerStarted]="timerStarted" [reset]="resetTimer" (timeEvent)="getTimerSeconds($event)"></app-timer>
+
 <div class="editor border">
     <nu-monaco-diff-editor (keydown)="handleKeydown($event)" [height]="height" [options]="options" [old]="oldModel"
         [new]="newModel">
     </nu-monaco-diff-editor>
+</div>
+
+<div class="wrapper">
+    <app-leaderboard id="first" [snippetId]="snippetId"></app-leaderboard>
+    <select id="second" [(ngModel)]="currentTheme" (ngModelChange)="onChange($event)"> // value is an object
+        <option *ngFor="let theme of themes" [ngValue]="theme">{{theme}}</option>
+    </select>
 </div>
