@@ -1,3 +1,14 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #31353B;
     color: #D1D0C5;
@@ -5,8 +16,15 @@ body {
     font-size: 15px;
     font-weight: 1000;
     letter-spacing: 1px;
+
+
+}
+
+.margins {
     margin-left: 25px;
     margin-right: 25px;
+
+    margin-bottom:100px;
 }
 
 // .view-lines, .line-numbers {
@@ -22,7 +40,8 @@ a {
     text-decoration: underline;
 }
 
-button, select {
+button,
+select {
     background-color: hsl(220, 12%, 10%);
     color: #D1D0C5;
     width: 100%;

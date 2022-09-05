@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "@ng-util/monaco-editor": "^14.0.0",
+    "notiflix": "^3.2.5",
     "rxjs": "~7.5.0",
     "subsink": "^1.0.2",
     "tslib": "^2.3.0",

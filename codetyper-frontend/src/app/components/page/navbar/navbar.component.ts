@@ -5,6 +5,7 @@ import { User } from 'src/app/api/user';
 import { AuthService, logout } from 'src/app/services/auth.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { SubSink } from 'subsink';
+import Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-navbar',
@@ -25,6 +26,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private sharedService: SharedService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    Notiflix.Notify.init({
+      position: "center-top"
+    });
+
     GlobalConstants.reRoute = (pageName: string) => {
       this.router.navigate([`${pageName}`]);
     }

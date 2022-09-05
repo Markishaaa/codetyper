@@ -22,13 +22,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.login = () => {
-      this.authService.login(this.username, this.password).subscribe(
-        resp => {
-          this.router.navigate(["/"])
-            .then(() => window.location.reload());
-        }
-      );
-    };
+      if (this.username !== "" && this.password !== "") {
+        this.authService.login(this.username, this.password).subscribe(
+          resp => {
+            this.router.navigate(["/"])
+              .then(() => window.location.reload());
+          }
+        );
+      };
+    }
   }
 
   ngOnDestroy(): void {

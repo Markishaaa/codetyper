@@ -8,7 +8,7 @@
 
 <div class="wrapper">
     <app-leaderboard id="first" [snippetId]="snippetId"></app-leaderboard>
-    <select id="second" [(ngModel)]="currentTheme" (ngModelChange)="onChange($event)"> // value is an object
+    <select id="second" [(ngModel)]="currentTheme" (ngModelChange)="onChange($event)">
         <option *ngFor="let theme of themes" [ngValue]="theme">{{theme}}</option>
     </select>
 </div>

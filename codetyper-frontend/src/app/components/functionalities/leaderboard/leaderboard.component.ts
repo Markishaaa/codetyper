@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Score } from 'src/app/api/score';
 import { ScoreService } from 'src/app/services/score.service';
 import { SubSink } from 'subsink';
@@ -19,6 +19,9 @@ export class LeaderboardComponent implements OnInit {
   toggleShow: string = "show leaderboard";
   toggleVisibility: boolean = false;
 
+  @ViewChild("scoresTag")
+  scoresTag: ElementRef | any;
+
   constructor(private scoreService: ScoreService) { }
 
   showLeaderboard = () => {
@@ -31,6 +34,8 @@ export class LeaderboardComponent implements OnInit {
       }));
       this.visibility = "visible";
       this.toggleShow = "hide leaderboard";
+      if (this.scoresTag)
+        this.scoresTag.nativeElement.scrollIntoView({behavior: "smooth"});
     } else {
       this.visibility = "hidden";
       this.toggleShow = "show leaderboard";
@@ -38,6 +43,10 @@ export class LeaderboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
+    
   }
 
   ngOnDestroy(): void {
