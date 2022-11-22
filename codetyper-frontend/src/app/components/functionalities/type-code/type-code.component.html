@@ -1,14 +1,16 @@
 <app-timer [timerStarted]="timerStarted" [reset]="resetTimer" (timeEvent)="getTimerSeconds($event)"></app-timer>
 
-<div class="editor border">
-    <nu-monaco-diff-editor (keydown)="handleKeydown($event)" [height]="height" [options]="options" [old]="oldModel"
-        [new]="newModel">
-    </nu-monaco-diff-editor>
+<div *ngIf="this.currentSnippet" class="wrapper-editor" [style.--editorWidth]="editorWidthVar">
+    <ngx-codemirror #codeeditor1 [options]="snippetOptions" [(ngModel)]="this.currentSnippet.content" class="editor1">
+    </ngx-codemirror>
+    <ngx-codemirror #codeeditor2 [options]="editorOptions" [(ngModel)]="text" (keydown)="handleKeydown($event)"
+        class="editor2">
+    </ngx-codemirror>
 </div>
 
-<div class="wrapper">
+<!-- <div class="wrapper">
     <app-leaderboard id="first" [snippetId]="snippetId"></app-leaderboard>
     <select id="second" [(ngModel)]="currentTheme" (ngModelChange)="onChange($event)">
         <option *ngFor="let theme of themes" [ngValue]="theme">{{theme}}</option>
     </select>
-</div>
+</div> -->

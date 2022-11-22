@@ -13,9 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/page/navbar/navbar.component';
 import { FooterComponent } from './components/page/footer/footer.component';
 import { TypeCodeComponent } from './components/functionalities/type-code/type-code.component';
-import { NuMonacoEditorDiffComponent, NuMonacoEditorModule } from '@ng-util/monaco-editor';
+// import { NuMonacoEditorDiffComponent, NuMonacoEditorModule } from '@ng-util/monaco-editor';
 import { TimerComponent } from './components/functionalities/timer/timer.component';
 import { LeaderboardComponent } from './components/functionalities/leaderboard/leaderboard.component';
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
 
 @NgModule({
@@ -35,8 +36,9 @@ import { LeaderboardComponent } from './components/functionalities/leaderboard/l
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NuMonacoEditorModule.forRoot(),
-    NuMonacoEditorDiffComponent
+    // NuMonacoEditorModule.forRoot(),
+    // NuMonacoEditorDiffComponent
+    CodemirrorModule
   ],
   providers: [
     AuthService,

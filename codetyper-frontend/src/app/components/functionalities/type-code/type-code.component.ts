@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NuMonacoEditorDiffModel } from '@ng-util/monaco-editor';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CodeSnippet } from 'src/app/api/code-snippet';
 import { GlobalConstants } from 'src/app/api/global-constants';
@@ -8,15 +7,22 @@ import { CodeSnippetService } from 'src/app/services/code-snippet.service';
 import { ScoreService } from 'src/app/services/score.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { SubSink } from 'subsink';
+import Notiflix from 'notiflix';
+import 'codemirror/addon/edit/closebrackets'
 
 @Component({
   selector: 'app-type-code',
   templateUrl: './type-code.component.html',
-  styleUrls: ['./type-code.component.scss']
+  styleUrls: ['./type-code.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TypeCodeComponent implements OnInit, OnDestroy {
 
   subs = new SubSink();
+
+  // css variables
+  editorHeightVar: any;
+  editorWidthVar: any;
 
   text: string = "";
   currentSnippet: CodeSnippet | any;
@@ -24,12 +30,39 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
 
   clickEventSubscription: Subscription | any;
 
-  currentTheme = "vs-dark";
-  themes = ['vs-dark', 'hc-black'];
-  options: any;
-  oldModel: NuMonacoEditorDiffModel | any;
-  newModel: NuMonacoEditorDiffModel | any;
-  height = "30rem";
+  @ViewChild('codeeditor1') private codeEditor: any;
+  @ViewChild('codeeditor2') private codeEditor2: any;
+
+  snippetOptions: any = {
+    mode: "text/x-java",
+    indentWithTabs: true,
+    smartIndent: true,
+    lineNumbers: true,
+    lineWrapping: true,
+    extraKeys: { "Ctrl-Space": "autocomplete" },
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    lint: true,
+    theme: "dracula",
+    tabSize: 2,
+    readOnly: true
+  };
+
+  editorOptions: any = {
+    mode: "text/x-java",
+    indentWithTabs: true,
+    smartIndent: true,
+    lineNumbers: true,
+    lineWrapping: true,
+    extraKeys: { "Ctrl-Space": "autocomplete" },
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    lint: true,
+    theme: "dracula",
+    tabSize: 2,
+    readOnly: false
+  }
 
   timerStarted: boolean = false;
   resetTimer: boolean = false;
@@ -38,33 +71,11 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
   wpm: number = 0;
   seconds: number = 0;
 
-  initializeMonacoEditor = (value: string) => {
-    this.oldModel = {
-      code: value,
-      language: "java"
-    };
-    this.newModel = {
-      code: "",
-      language: "java"
-    }
-  }
-
-  initializeOptions = () => {
-    this.options = {
-      theme: this.currentTheme, minimap: { enabled: false },
-      contextmenu: false, formatOnType: true,
-      renderControlCharacters: false, renderOverviewRuler: false,
-      scrollBeyondLastLine: false, selectionClipboard: false,
-      selectOnLineNumbers: false, quickSuggestions: false,
-      renderIndicators: false
-    };
-  }
-
   getRandomSnippet = () => {
     this.subs.add(this.snippetService.getRandomSnippet().subscribe(data => {
       this.currentSnippet = data;
       this.snippetId = this.currentSnippet.id;
-      this.initializeMonacoEditor(this.currentSnippet.content);
+      this.wpm = 0;
     }));
   }
 
@@ -92,15 +103,7 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
     }
   }
 
-  onChange = (event: any) => {
-    this.currentTheme = event;
-    this.initializeOptions();
-  }
-
-  constructor(private snippetService: CodeSnippetService, private sharedService: SharedService, private scoreService: ScoreService) {
-    this.initializeMonacoEditor("");
-    this.initializeOptions();
-  }
+  constructor(private snippetService: CodeSnippetService, private sharedService: SharedService, private scoreService: ScoreService) { }
 
   getTimerSeconds = (seconds: number) => {
     this.seconds = seconds;
@@ -109,10 +112,10 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
   }
 
   calculateWpm = () => {
-    let characters = this.oldModel.code.length;
+    // let characters = this.oldModel.code.length;
     let minutes = this.seconds / 60;
 
-    this.wpm = (characters / 5) / minutes;
+    // this.wpm = (characters / 5) / minutes;
     this.wpm = Math.round(this.wpm);
 
     if (this.seconds > 0) {
@@ -128,7 +131,7 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
       }));
     }
 
-    window.alert("wpm: " + this.wpm);
+    Notiflix.Notify.info("wpm: " + this.wpm);
   }
 
   ngOnInit(): void {
@@ -139,6 +142,18 @@ export class TypeCodeComponent implements OnInit, OnDestroy {
       this.resetTimer = true;
       this.timerStarted = false;
     });
+  }
+
+  ngAfterViewInit(): void {
+    let that = this;
+    
+    setTimeout(function(){
+      const editor = that.codeEditor.codeMirror;
+      const editor2 = that.codeEditor2.codeMirror;
+      const doc = editor.getDoc();
+      // that.editorHeight = editor.lineCount() + "em";
+      // editor2.setSize(that.editorWidthVar, that.editorHeightVar * 12)
+    }, 500);
   }
 
   ngOnDestroy(): void {

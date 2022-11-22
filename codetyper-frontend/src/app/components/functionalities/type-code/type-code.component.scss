@@ -100,3 +100,30 @@ select {
         transform: translate(0, 10px);
     }
 }
+
+.wrapper-editor {
+    margin-top: 5rem;
+    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+    height: auto;
+    width: 95vw;
+    background-color: white;
+}
+
+.editor1 {
+    .CodeMirror {
+        height: auto;
+    }
+}
+
+.editor2 {
+    height: 100%;
+    .CodeMirror {
+        height: inherit;
+    }
+}
